@@ -263,9 +263,7 @@
         <!--        <Compile Include="@(ManiaRulesetFiles)">-->
         <!--            <Link>External/Rulesets.Mania/%(RecursiveDir)%(Filename)%(Extension)</Link>-->
         <!--        </Compile>-->
-        <Compile Include="$(MSBuildThisFileDirectory)Mocks/**/*.cs"/>
-        <Compile Include="$(MSBuildThisFileDirectory)StringBackedWorkingBeatmap.cs"/>
-        <Compile Include="$(MSBuildThisFileDirectory)Main.cs"/>
+        <Compile Include="$(MSBuildThisFileDirectory)Shared/**/*.cs"/>
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="System.Numerics.Tensors" Version="8.0.0"/>
