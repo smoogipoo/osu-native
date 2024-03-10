@@ -9,6 +9,6 @@ namespace osu.Framework.Audio
 {
     public interface IAdjustableAudioComponent
     {
-        void AddAdjustment(AdjustableProperty property, BindableNumber<double> bindable);
+        void AddAdjustment(AdjustableProperty property, IBindableNumber<double> bindable);
     }
 }

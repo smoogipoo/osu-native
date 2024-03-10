@@ -25,6 +25,7 @@ namespace osu.Game.Rulesets.Mods
 
         public void ApplyToTrack(IAdjustableAudioComponent track)
         {
+            track.AddAdjustment(AdjustableProperty.Tempo, SpeedChange);
         }
     }
 }

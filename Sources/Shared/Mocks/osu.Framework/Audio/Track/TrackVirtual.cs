@@ -7,8 +7,6 @@ namespace osu.Framework.Audio.Track
 {
     public class TrackVirtual : Track
     {
-        public double Rate => 1; // Todo: Actually implement!
-
         public TrackVirtual(double length, string name = "virtual")
         {
         }
