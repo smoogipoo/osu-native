@@ -164,6 +164,7 @@
                         $(GameDir)/Graphics/OsuIcon.cs;
                         $(GameDir)/Utils/ColourUtils.cs;
                         $(GameDir)/Utils/ModUtils.cs;
+                        $(GameDir)/Utils/LimitedCapacityQueue.cs;
                         $(GameDir)/IO/IFileInfo.cs;
                         $(GameDir)/Models/**/*.cs;
                         $(GameDir)/Rulesets/Difficulty/**/*.cs;
@@ -235,7 +236,27 @@
                                   $(OsuRulesetDir)/OsuInputManager.cs;
                                   $(OsuRulesetDir)/OsuRuleset.cs;
                                   $(OsuRulesetDir)/OsuSkinComponentLookup.cs;
-                                  $(OsuRulesetDir)/OsuSkinComponents;"/>
+                                  $(OsuRulesetDir)/OsuSkinComponents.cs;"/>
+
+        <TaikoRulesetFiles Include="$(TaikoRulesetDir)/**/*.cs"
+                         Exclude="$(TaikoRulesetDir)/bin/**/*.cs;
+                                  $(TaikoRulesetDir)/obj/**/*.cs;
+                                  $(TaikoRulesetDir)/Beatmaps/TaikoBeatmap.cs;
+                                  $(TaikoRulesetDir)/Configuration/**/*.cs;
+                                  $(TaikoRulesetDir)/Difficulty/TaikoLegacyScoreSimulator.cs;
+                                  $(TaikoRulesetDir)/Edit/**/*.cs;
+                                  $(TaikoRulesetDir)/Mods/**/*.cs;
+                                  $(TaikoRulesetDir)/Objects/Drawables/**/*.cs;
+                                  $(TaikoRulesetDir)/Replays/**/*.cs;
+                                  $(TaikoRulesetDir)/Scoring/TaikoHealthProcessor.cs;
+                                  $(TaikoRulesetDir)/Scoring/TaikoScoreProcessor.cs;
+                                  $(TaikoRulesetDir)/Skinning/**/*.cs;
+                                  $(TaikoRulesetDir)/UI/**/*.cs;
+                                  $(TaikoRulesetDir)/TaikoInputManager.cs;
+                                  $(TaikoRulesetDir)/TaikoRuleset.cs;
+                                  $(TaikoRulesetDir)/TaikoSettingsSubsection.cs;
+                                  $(TaikoRulesetDir)/TaikoSkinComponentLookup.cs;
+                                  $(TaikoRulesetDir)/TaikoSkinComponents.cs;"/>
     </ItemGroup>
 
     <ItemGroup>
@@ -254,9 +275,9 @@
         <Compile Include="@(OsuRulesetFiles)">
             <Link>External/osu.Game.Rulesets.Osu/%(RecursiveDir)%(Filename)%(Extension)</Link>
         </Compile>
-        <!--        <Compile Include="@(TaikoRulesetFiles)">-->
-        <!--            <Link>External/Rulesets.Taiko/%(RecursiveDir)%(Filename)%(Extension)</Link>-->
-        <!--        </Compile>-->
+        <Compile Include="@(TaikoRulesetFiles)">
+            <Link>External/osu.Game.Rulesets.Taiko/%(RecursiveDir)%(Filename)%(Extension)</Link>
+        </Compile>
         <!--        <Compile Include="@(CatchRulesetFiles)">-->
         <!--            <Link>External/Rulesets.Catch/%(RecursiveDir)%(Filename)%(Extension)</Link>-->
         <!--        </Compile>-->

@@ -4,6 +4,7 @@
 using System;
 using osu.Game.Rulesets;
 using osu.Game.Rulesets.Osu;
+using osu.Game.Rulesets.Taiko;
 
 // ReSharper disable once CheckNamespace
 
@@ -17,6 +18,9 @@ namespace osu.Game.Native
             {
                 case 0:
                     return new OsuRuleset();
+
+                case 1:
+                    return new TaikoRuleset();
 
                 default:
                     throw new InvalidOperationException($"Unknown ruleset id: {rulesetId}.");
