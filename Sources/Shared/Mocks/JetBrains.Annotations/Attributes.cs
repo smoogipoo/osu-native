@@ -23,4 +23,7 @@ namespace JetBrains.Annotations
         {
         }
     }
+
+    [AttributeUsage(AttributeTargets.All)]
+    public class InstantHandleAttribute : Attribute;
 }
