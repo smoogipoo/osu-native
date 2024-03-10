@@ -165,6 +165,8 @@
                         $(GameDir)/Utils/ColourUtils.cs;
                         $(GameDir)/Utils/ModUtils.cs;
                         $(GameDir)/Utils/LimitedCapacityQueue.cs;
+                        $(GameDir)/Utils/LegacyRandom.cs;
+                        $(GameDir)/Utils/StatelessRNG.cs;
                         $(GameDir)/IO/IFileInfo.cs;
                         $(GameDir)/Models/**/*.cs;
                         $(GameDir)/Rulesets/Difficulty/**/*.cs;
@@ -188,6 +190,7 @@
                         $(GameDir)/Scoring/RankingTier.cs;
                         $(GameDir)/Scoring/IScoreInfo.cs;
                         $(GameDir)/Scoring/ScoreInfoExtensions.cs;
+                        $(GameDir)/Scoring/Legacy/ScoreInfoExtensions.cs;
                         $(GameDir)/Beatmaps/APIFailTimes.cs;
                         $(GameDir)/Localisation/SongSelectStrings.cs;
                         $(GameDir)/IO/LineBufferedReader.cs;
@@ -257,6 +260,25 @@
                                   $(TaikoRulesetDir)/TaikoSettingsSubsection.cs;
                                   $(TaikoRulesetDir)/TaikoSkinComponentLookup.cs;
                                   $(TaikoRulesetDir)/TaikoSkinComponents.cs;"/>
+
+        <CatchRulesetFiles Include="$(CatchRulesetDir)/**/*.cs"
+                           Exclude="$(CatchRulesetDir)/bin/**/*.cs;
+                                  $(CatchRulesetDir)/obj/**/*.cs;
+                                  $(CatchRulesetDir)/Beatmaps/CatchBeatmap.cs;
+                                  $(CatchRulesetDir)/Difficulty/CatchLegacyScoreSimulator.cs;
+                                  $(CatchRulesetDir)/Edit/**/*.cs;
+                                  $(CatchRulesetDir)/Judgements/CatchJudgementResult.cs;
+                                  $(CatchRulesetDir)/Mods/**/*.cs;
+                                  $(CatchRulesetDir)/Objects/Drawables/**/*.cs;
+                                  $(CatchRulesetDir)/Replays/**/*.cs;
+                                  $(CatchRulesetDir)/Scoring/CatchHealthProcessor.cs;
+                                  $(CatchRulesetDir)/Scoring/CatchScoreProcessor.cs;
+                                  $(CatchRulesetDir)/Skinning/**/*.cs;
+                                  $(CatchRulesetDir)/UI/**/*.cs;
+                                  $(CatchRulesetDir)/CatchInputManager.cs;
+                                  $(CatchRulesetDir)/CatchRuleset.cs;
+                                  $(CatchRulesetDir)/CatchSkinComponentLookup.cs;
+                                  $(CatchRulesetDir)/CatchSkinComponents.cs;"/>
     </ItemGroup>
 
     <ItemGroup>
@@ -278,9 +300,9 @@
         <Compile Include="@(TaikoRulesetFiles)">
             <Link>External/osu.Game.Rulesets.Taiko/%(RecursiveDir)%(Filename)%(Extension)</Link>
         </Compile>
-        <!--        <Compile Include="@(CatchRulesetFiles)">-->
-        <!--            <Link>External/Rulesets.Catch/%(RecursiveDir)%(Filename)%(Extension)</Link>-->
-        <!--        </Compile>-->
+        <Compile Include="@(CatchRulesetFiles)">
+            <Link>External/osu.Game.Rulesets.Catch/%(RecursiveDir)%(Filename)%(Extension)</Link>
+        </Compile>
         <!--        <Compile Include="@(ManiaRulesetFiles)">-->
         <!--            <Link>External/Rulesets.Mania/%(RecursiveDir)%(Filename)%(Extension)</Link>-->
         <!--        </Compile>-->
