@@ -8,11 +8,10 @@ using osu.Game.Beatmaps;
 using osu.Game.Beatmaps.ControlPoints;
 using osu.Game.Beatmaps.Formats;
 using osu.Game.Beatmaps.Legacy;
-using osu.Game.Native.StableHelper;
+using osu.Game.Native;
 using osu.Game.Rulesets;
 using osu.Game.Rulesets.Difficulty;
 using osu.Game.Rulesets.Mods;
-using osu.Game.Rulesets.Osu;
 
 // ReSharper disable once CheckNamespace
 
@@ -34,13 +33,7 @@ public class Program
     public static double ComputeDifficulty(IntPtr beatmapTextPtr, int rulesetId, LegacyMods legacyMods)
     {
         string beatmapText = Marshal.PtrToStringAuto(beatmapTextPtr) ?? throw new InvalidOperationException("Beatmap text was empty.");
-
-        Ruleset ruleset = rulesetId switch
-        {
-            0 => new OsuRuleset(),
-            _ => throw new InvalidOperationException($"Unknown ruleset id: {rulesetId}.")
-        };
-
+        Ruleset ruleset = RulesetHelper.CreateRuleset(rulesetId);
         Mod[] mods = ruleset.ConvertFromLegacyMods(legacyMods).ToArray();
 
         DifficultyCalculator calculator = ruleset.CreateDifficultyCalculator(new StringBackedWorkingBeatmap(beatmapText));

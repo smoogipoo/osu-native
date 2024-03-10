@@ -10,7 +10,7 @@ using osu.Game.Beatmaps.Formats;
 using osu.Game.IO;
 using osu.Game.Skinning;
 
-namespace osu.Game.Native.StableHelper
+namespace osu.Game.Native
 {
     public class StringBackedWorkingBeatmap : WorkingBeatmap
     {
