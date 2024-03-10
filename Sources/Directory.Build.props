@@ -241,6 +241,14 @@
                                   $(OsuRulesetDir)/OsuRuleset.cs;
                                   $(OsuRulesetDir)/OsuSkinComponentLookup.cs;
                                   $(OsuRulesetDir)/OsuSkinComponents.cs;"/>
+        <OsuRulesetFiles Include="$(OsuRulesetDir)/Mods/OsuModDoubleTime.cs;
+                                    $(OsuRulesetDir)/Mods/OsuModHalfTime.cs;
+                                    $(OsuRulesetDir)/Mods/OsuModEasy.cs;
+                                    $(OsuRulesetDir)/Mods/OsuModHardRock.cs;
+                                    $(OsuRulesetDir)/Mods/OsuModNoFail.cs;
+                                    $(OsuRulesetDir)/Mods/OsuModTouchDevice.cs;
+
+"/>
 
         <TaikoRulesetFiles Include="$(TaikoRulesetDir)/**/*.cs"
                          Exclude="$(TaikoRulesetDir)/bin/**/*.cs;
@@ -261,6 +269,10 @@
                                   $(TaikoRulesetDir)/TaikoSettingsSubsection.cs;
                                   $(TaikoRulesetDir)/TaikoSkinComponentLookup.cs;
                                   $(TaikoRulesetDir)/TaikoSkinComponents.cs;"/>
+        <TaikoRulesetFiles Include="$(TaikoRulesetDir)/Mods/TaikoModDoubleTime.cs;
+                                    $(TaikoRulesetDir)/Mods/TaikoModHalfTime.cs;
+                                    $(TaikoRulesetDir)/Mods/TaikoModEasy.cs;
+                                    $(TaikoRulesetDir)/Mods/TaikoModHardRock.cs;"/>
 
         <CatchRulesetFiles Include="$(CatchRulesetDir)/**/*.cs"
                            Exclude="$(CatchRulesetDir)/bin/**/*.cs;
@@ -280,6 +292,10 @@
                                   $(CatchRulesetDir)/CatchRuleset.cs;
                                   $(CatchRulesetDir)/CatchSkinComponentLookup.cs;
                                   $(CatchRulesetDir)/CatchSkinComponents.cs;"/>
+        <CatchRulesetFiles Include="$(CatchRulesetDir)/Mods/CatchModDoubleTime.cs;
+                                    $(CatchRulesetDir)/Mods/CatchModHalfTime.cs;
+                                    $(CatchRulesetDir)/Mods/CatchModEasy.cs;
+                                    $(CatchRulesetDir)/Mods/CatchModHardRock.cs;"/>
 
         <ManiaRulesetFiles Include="$(ManiaRulesetDir)/**/*.cs"
                            Exclude="$(ManiaRulesetDir)/bin/**/*.cs;
