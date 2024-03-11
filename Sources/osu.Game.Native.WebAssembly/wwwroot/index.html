@@ -8,7 +8,14 @@
 </head>
 <body>
   <input type="file" id="beatmap-file" />
-  <div style="display: block; margin: 1em"></div>
+  <br>
+  <label for="ruleset-dropdown">Ruleset: </label><select id="ruleset-dropdown">
+    <option value="0">osu</option>
+    <option value="1">taiko</option>
+    <option value="2">catch</option>
+    <option value="3">mania</option>
+  </select>
+  <br>
   Star rating: <span id="result">0</span>
 </body>
 </html>
