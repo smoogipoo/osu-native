@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 using osu.Framework.Bindables;
+using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 
 // ReSharper disable once CheckNamespace
@@ -12,5 +13,7 @@ namespace osu.Game.Screens.Play
     {
         public Bindable<bool> ShowHealthBar = default!;
         public Bindable<bool> ShowHud = default!;
+
+        public Drawable PlayfieldSkinLayer = default!;
     }
 }

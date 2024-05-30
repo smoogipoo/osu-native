@@ -16,13 +16,6 @@ namespace osu.Game.Rulesets.UI
 
     public class DrawableRuleset : CompositeDrawable
     {
-        public bool AlwaysPresent;
-
         public List<object> Overlays => throw new NotImplementedException();
-
-        public void Hide()
-        {
-            throw new NotImplementedException();
-        }
     }
 }
