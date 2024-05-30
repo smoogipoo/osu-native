@@ -1,8 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "osu.Game.Native.Desktop", "Sources\osu.Game.Native.Desktop\osu.Game.Native.Desktop.csproj", "{6467E7A9-DE2C-4960-873E-AB058262FDAE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "osu.Game.Native.Desktop", "osu.Game.Native.Desktop\osu.Game.Native.Desktop.csproj", "{6467E7A9-DE2C-4960-873E-AB058262FDAE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "osu.Game.Native.WebAssembly", "Sources\osu.Game.Native.WebAssembly\osu.Game.Native.WebAssembly.csproj", "{0D538C83-4744-4018-9D34-51F4C9E481C5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "osu.Game.Native.WebAssembly", "osu.Game.Native.WebAssembly\osu.Game.Native.WebAssembly.csproj", "{0D538C83-4744-4018-9D34-51F4C9E481C5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
