@@ -9,7 +9,6 @@ using osu.Game.Beatmaps;
 using osu.Game.Beatmaps.Legacy;
 using osu.Game.Native;
 using osu.Game.Rulesets;
-using osu.Game.Rulesets.Difficulty;
 using osu.Game.Rulesets.Mods;
 
 // ReSharper disable once CheckNamespace
@@ -28,11 +27,11 @@ public partial class Program
     }
 
     [JSExport]
-    public static async Task<double> ComputeDifficulty(string beatmapText, int rulesetId, int legacyMods)
+    public static async Task<double> ComputeDifficulty(string beatmapText, int rulesetId, int mods)
     {
-        Ruleset ruleset = RulesetHelper.CreateRuleset(rulesetId);
-        Mod[] mods = ruleset.ConvertFromLegacyMods((LegacyMods)legacyMods).ToArray();
         WorkingBeatmap workingBeatmap = new StringBackedWorkingBeatmap(beatmapText);
+        Ruleset ruleset = RulesetHelper.CreateRuleset(rulesetId);
+        Mod[] rulesetMods = ruleset.ConvertFromLegacyMods((LegacyMods)mods).ToArray();
 
         // Normally, the beatmap will be loaded internally via .Result.
         // In WebAssembly, this is dangerous to do because waiting on monitors is not allowed.
@@ -40,7 +39,8 @@ public partial class Program
         // which makes sure that the following call to .Result will complete without waiting on a monitor.
         await (Task<IBeatmap>)load_beatmap_async_method.Invoke(workingBeatmap, [])!;
 
-        DifficultyCalculator calculator = ruleset.CreateDifficultyCalculator(workingBeatmap);
-        return calculator.Calculate(mods).StarRating;
+        return ruleset.CreateDifficultyCalculator(workingBeatmap)
+                      .Calculate(rulesetMods)
+                      .StarRating;
     }
 }
