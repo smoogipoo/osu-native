@@ -247,12 +247,10 @@
                                     $(OsuRulesetDir)/Mods/OsuModEasy.cs;
                                     $(OsuRulesetDir)/Mods/OsuModHardRock.cs;
                                     $(OsuRulesetDir)/Mods/OsuModNoFail.cs;
-                                    $(OsuRulesetDir)/Mods/OsuModTouchDevice.cs;
-
-"/>
+                                    $(OsuRulesetDir)/Mods/OsuModTouchDevice.cs;"/>
 
         <TaikoRulesetFiles Include="$(TaikoRulesetDir)/**/*.cs"
-                         Exclude="$(TaikoRulesetDir)/bin/**/*.cs;
+                           Exclude="$(TaikoRulesetDir)/bin/**/*.cs;
                                   $(TaikoRulesetDir)/obj/**/*.cs;
                                   $(TaikoRulesetDir)/Beatmaps/TaikoBeatmap.cs;
                                   $(TaikoRulesetDir)/Configuration/**/*.cs;
