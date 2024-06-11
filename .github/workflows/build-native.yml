@@ -1,0 +1,41 @@
+name: Build
+
+on:
+  - workflow_dispatch
+
+jobs:
+  build-win:
+    name: Build
+    runs-on: ${{ matrix.config.runner }}
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - { runner: windows-latest, platform: win-x86,     ext: dll }
+          - { runner: windows-latest, platform: win-x64,     ext: dll }
+          - { runner: windows-latest, platform: win-arm64,   ext: dll }
+          - { runner: ubuntu-latest,  platform: linux-x64,   ext: so }
+            # Likely needs QEMU:
+          # - { runner: ubuntu-latest,  platform: linux-arm64, ext: so }
+          - { runner: macos-latest,   platform: osx-x64,     ext: dylib }
+          - { runner: macos-latest,   platform: osx-arm64,   ext: dylib }
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: 'recursive'
+
+      - name: Install .NET 9.0.x
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.x'
+          dotnet-quality: 'daily'
+
+      - name: Build
+        run: dotnet publish -c Release -r ${{ matrix.config.platform }} -f net9.0 --self-contained Sources/osu.Game.Native.Desktop/osu.Game.Native.Desktop.csproj
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.config.platform }}
+          path: Sources/osu.Game.Native.Desktop/bin/Release/${{ matrix.config.platform }}/publish/osu.Game.Native.Desktop.${{ matrix.config.ext }}
