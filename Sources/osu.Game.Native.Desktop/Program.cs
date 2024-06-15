@@ -2,6 +2,7 @@
 // See the LICENCE file in the repository root for full licence text.
 
 using System;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using osu.Game.Beatmaps;
@@ -28,24 +29,65 @@ public unsafe class Program
         _ = Activator.CreateInstance<LegacyDecoder<Beatmap>.LegacySampleControlPoint>();
     }
 
-    private static delegate*<IntPtr, void> logger;
+    private static LogDelegate? logger;
 
+    /// <summary>
+    /// Sets the logger.
+    /// </summary>
+    /// <param name="handler">A <see cref="LogDelegate"/> callback to handle the message.</param>
     [UnmanagedCallersOnly(EntryPoint = "SetLogger")]
-    public static void SetLogger(delegate*<IntPtr, void> handler)
-        => logger = handler;
-
-    [UnmanagedCallersOnly(EntryPoint = "ComputeDifficulty")]
-    public static ErrorCode ComputeDifficulty(char* beatmapTextPtr, int rulesetId, uint mods, double* starRating)
+    public static ErrorCode SetLogger(IntPtr handler)
     {
-        *starRating = 0;
+        logger = Marshal.GetDelegateForFunctionPointer<LogDelegate>(handler);
+        return ErrorCode.Success;
+    }
+
+    /// <summary>
+    /// Computes difficulty given a beatmap file path.
+    /// </summary>
+    /// <param name="filePathPtr">The file path.</param>
+    /// <param name="rulesetId">The ruleset.</param>
+    /// <param name="mods">The mods.</param>
+    /// <param name="starRating">The star rating.</param>
+    [UnmanagedCallersOnly(EntryPoint = "ComputeDifficulty_FromFile")]
+    public static ErrorCode ComputeDifficultyFromFile(char* filePathPtr, int rulesetId, uint mods, double* starRating)
+    {
+        string? filePath = Marshal.PtrToStringAuto((IntPtr)filePathPtr);
+
+        if (string.IsNullOrEmpty(filePath))
+            return error(ErrorCode.FileReadError, "Path is empty.");
 
         try
         {
-            string? beatmapText = Marshal.PtrToStringAuto((IntPtr)beatmapTextPtr);
+            return computeDifficulty(File.ReadAllText(filePath), rulesetId, mods, starRating);
+        }
+        catch (Exception ex)
+        {
+            return error(ErrorCode.Failure, ex.ToString());
+        }
+    }
 
-            if (string.IsNullOrEmpty(beatmapText))
-                return error(ErrorCode.EmptyBeatmap, "The provided beatmap was empty.");
+    /// <summary>
+    /// Computes difficulty given beatmap content.
+    /// </summary>
+    /// <param name="beatmapTextPtr">The beatmap content.</param>
+    /// <param name="rulesetId">The ruleset.</param>
+    /// <param name="mods">The mods.</param>
+    /// <param name="starRating">The star rating.</param>
+    [UnmanagedCallersOnly(EntryPoint = "ComputeDifficulty_FromText")]
+    public static ErrorCode ComputeDifficultyFromText(char* beatmapTextPtr, int rulesetId, uint mods, double* starRating)
+    {
+        string? beatmapText = Marshal.PtrToStringAuto((IntPtr)beatmapTextPtr);
+        return computeDifficulty(beatmapText, rulesetId, mods, starRating);
+    }
 
+    private static ErrorCode computeDifficulty(string? beatmapText, int rulesetId, uint mods, double* starRating)
+    {
+        if (string.IsNullOrEmpty(beatmapText))
+            return error(ErrorCode.EmptyBeatmap, "Beatmap is empty.");
+
+        try
+        {
             WorkingBeatmap workingBeatmap = new StringBackedWorkingBeatmap(beatmapText);
             Ruleset ruleset = RulesetHelper.CreateRuleset(rulesetId);
             Mod[] rulesetMods = ruleset.ConvertFromLegacyMods((LegacyMods)mods).ToArray();
@@ -65,7 +107,11 @@ public unsafe class Program
     private static ErrorCode error(ErrorCode code, string description)
     {
         if (logger != null)
-            logger(Marshal.StringToHGlobalAuto(description));
+        {
+            IntPtr msgPtr = Marshal.StringToHGlobalUni(description);
+            logger((char*)msgPtr);
+            Marshal.FreeHGlobal(msgPtr);
+        }
 
         return code;
     }
@@ -74,6 +120,9 @@ public unsafe class Program
     {
         Success = 0,
         EmptyBeatmap = 1,
+        FileReadError = 2,
         Failure = 255
     }
+
+    public delegate void LogDelegate(char* message);
 }
