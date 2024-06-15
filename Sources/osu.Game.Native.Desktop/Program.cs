@@ -4,6 +4,7 @@
 using System;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using osu.Game.Beatmaps;
 using osu.Game.Beatmaps.ControlPoints;
@@ -35,7 +36,7 @@ public unsafe class Program
     /// Sets the logger.
     /// </summary>
     /// <param name="handler">A <see cref="LogDelegate"/> callback to handle the message.</param>
-    [UnmanagedCallersOnly(EntryPoint = "SetLogger")]
+    [UnmanagedCallersOnly(EntryPoint = "SetLogger", CallConvs = [typeof(CallConvCdecl)])]
     public static ErrorCode SetLogger(IntPtr handler)
     {
         logger = Marshal.GetDelegateForFunctionPointer<LogDelegate>(handler);
@@ -49,10 +50,10 @@ public unsafe class Program
     /// <param name="rulesetId">The ruleset.</param>
     /// <param name="mods">The mods.</param>
     /// <param name="starRating">The star rating.</param>
-    [UnmanagedCallersOnly(EntryPoint = "ComputeDifficulty_FromFile")]
+    [UnmanagedCallersOnly(EntryPoint = "ComputeDifficulty_FromFile", CallConvs = [typeof(CallConvCdecl)])]
     public static ErrorCode ComputeDifficultyFromFile(char* filePathPtr, int rulesetId, uint mods, double* starRating)
     {
-        string? filePath = Marshal.PtrToStringAuto((IntPtr)filePathPtr);
+        string? filePath = Marshal.PtrToStringUTF8((IntPtr)filePathPtr);
 
         if (string.IsNullOrEmpty(filePath))
             return error(ErrorCode.FileReadError, "Path is empty.");
@@ -74,10 +75,10 @@ public unsafe class Program
     /// <param name="rulesetId">The ruleset.</param>
     /// <param name="mods">The mods.</param>
     /// <param name="starRating">The star rating.</param>
-    [UnmanagedCallersOnly(EntryPoint = "ComputeDifficulty_FromText")]
+    [UnmanagedCallersOnly(EntryPoint = "ComputeDifficulty_FromText", CallConvs = [typeof(CallConvCdecl)])]
     public static ErrorCode ComputeDifficultyFromText(char* beatmapTextPtr, int rulesetId, uint mods, double* starRating)
     {
-        string? beatmapText = Marshal.PtrToStringAuto((IntPtr)beatmapTextPtr);
+        string? beatmapText = Marshal.PtrToStringUTF8((IntPtr)beatmapTextPtr);
         return computeDifficulty(beatmapText, rulesetId, mods, starRating);
     }
 
