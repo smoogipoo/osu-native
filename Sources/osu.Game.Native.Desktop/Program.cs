@@ -42,6 +42,7 @@ public unsafe class Program
         _ = Activator.CreateInstance<OsuModHardRock>();
         _ = Activator.CreateInstance<OsuModFlashlight>();
         _ = Activator.CreateInstance<OsuModHidden>();
+        _ = Activator.CreateInstance<OsuModRelax>();
 
         _ = Activator.CreateInstance<TaikoModDoubleTime>();
         _ = Activator.CreateInstance<TaikoModHalfTime>();
