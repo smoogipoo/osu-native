@@ -25,7 +25,7 @@ public unsafe class Program
     static Program()
     {
         // This is kinda unfortunate, but I want to avoid mocking these.
-        // Sigh... Probably aaaaaaaaaalllllll of these should not use Activator.CreateInstance(), including above.
+        // Sigh... Probably aaaaaaaaaalllllll of these should not use Activator.CreateInstance().
 
         _ = Activator.CreateInstance<LegacyControlPointInfo>();
         _ = Activator.CreateInstance<TimingControlPoint>();
