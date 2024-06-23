@@ -1,6 +1,15 @@
 <Project>
-    <PropertyGroup>
+    <!-- win-x86 RID is only supported by .NET 9, currently in preview -->
+    <PropertyGroup Condition="'$(RuntimeIdentifier)' == 'win-x86'">
         <TargetFramework>net9.0</TargetFramework>
+    </PropertyGroup>
+
+    <!-- All other RIDs are supported by .NET 8 -->
+    <PropertyGroup Condition="'$(RuntimeIdentifier)' != 'win-x86'">
+        <TargetFramework>net8.0</TargetFramework>
+    </PropertyGroup>
+
+    <PropertyGroup>
         <Nullable>enable</Nullable>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <NoWarn>8765;3021</NoWarn>
