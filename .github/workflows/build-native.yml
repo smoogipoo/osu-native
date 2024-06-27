@@ -52,6 +52,5 @@ jobs:
           title: Update ${{ matrix.config.platform }} binaries
           body: This PR has been auto-generated to update the ${{ matrix.config.platform }} binaries.
           branch: update-${{ matrix.config.platform }}-binaries
-          path: 'osu-native-diffcalc'
         env:
           ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
