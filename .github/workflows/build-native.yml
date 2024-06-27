@@ -25,7 +25,7 @@ jobs:
         with:
           submodules: 'recursive'
 
-      - name: Install .NET 9.0.x
+      - name: Install .NET
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: |
@@ -34,7 +34,7 @@ jobs:
           dotnet-quality: 'daily'
 
       - name: Build
-        run: dotnet publish -c Release -r ${{ matrix.config.platform }} -f net9.0 --self-contained Sources/osu.Game.Native.Desktop/osu.Game.Native.Desktop.csproj
+        run: dotnet publish -c Release -r ${{ matrix.config.platform }} --self-contained Sources/osu.Game.Native.Desktop/osu.Game.Native.Desktop.csproj
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
