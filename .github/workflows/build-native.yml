@@ -43,7 +43,7 @@ jobs:
           path: Sources/osu.Game.Native.Desktop/bin/Release/${{ matrix.config.platform }}/publish/osu.Game.Native.Desktop.${{ matrix.config.ext }}
 
       - name: Update bindings
-        run: cp Sources/osu.Game.Native.Desktop/bin/Release/${{ matrix.config.platform }}/publish/osu.Game.Native.Desktop.${{ matrix.config.ext }} Bindings/CSharp/osu.Game.Native.Desktop.Bindings/runtimes/${{ matrix.config.platform }}/osu.Game.Native.Desktop.${{ matrix.config.ext }}
+        run: cp Sources/osu.Game.Native.Desktop/bin/Release/${{ matrix.config.platform }}/publish/osu.Game.Native.Desktop.${{ matrix.config.ext }} Bindings/CSharp/osu.Game.Native.Desktop.Bindings/runtimes/${{ matrix.config.platform }}/native/osu.Game.Native.Desktop.${{ matrix.config.ext }}
 
       - name: Create pull request
         uses: peter-evans/create-pull-request@v6
