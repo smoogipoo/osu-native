@@ -1,11 +1,11 @@
-name: Build
+name: Build (Native)
 
 on:
   - workflow_dispatch
 
 jobs:
-  build-win:
-    name: Build
+  build-desktop:
+    name: Build (Desktop)
     runs-on: ${{ matrix.config.runner }}
     strategy:
       fail-fast: false
@@ -39,3 +39,17 @@ jobs:
         with:
           name: ${{ matrix.config.platform }}
           path: Sources/osu.Game.Native.Desktop/bin/Release/${{ matrix.config.platform }}/publish/osu.Game.Native.Desktop.${{ matrix.config.ext }}
+
+      - name: Update bindings
+        run: cp Sources/osu.Game.Native.Desktop/bin/Release/${{ matrix.config.platform }}/publish/osu.Game.Native.Desktop.${{ matrix.config.ext }} Bindings/CSharp/osu.Game.Native.Desktop.Bindings/runtimes/${{ matrix.config.platform }}/osu.Game.Native.Desktop.${{ matrix.config.ext }}
+
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: Update ${{ matrix.config.platform }} binaries
+          title: Update ${{ matrix.config.platform }} binaries
+          body: This PR has been auto-generated to update the ${{ matrix.config.platform }} binaries.
+          branch: update-${{ matrix.config.platform }}-binaries
+          path: 'osu-native-diffcalc'
+        env:
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
