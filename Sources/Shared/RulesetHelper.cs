@@ -10,7 +10,7 @@ using osu.Game.Rulesets.Taiko;
 
 // ReSharper disable once CheckNamespace
 
-namespace osu.Game.Native
+namespace osu.Native
 {
     public static class RulesetHelper
     {

@@ -4,8 +4,8 @@ on:
   - workflow_dispatch
 
 jobs:
-  build-desktop:
-    name: Build (Desktop)
+  build-native:
+    name: Build (Native)
     runs-on: ${{ matrix.config.runner }}
     strategy:
       fail-fast: false
@@ -34,16 +34,16 @@ jobs:
           dotnet-quality: 'daily'
 
       - name: Build
-        run: dotnet publish -c Release -r ${{ matrix.config.platform }} --self-contained Sources/osu.Game.Native.Desktop/osu.Game.Native.Desktop.csproj
+        run: dotnet publish -c Release -r ${{ matrix.config.platform }} --self-contained Sources/osu.Native/osu.Native.csproj
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.config.platform }}
-          path: Sources/osu.Game.Native.Desktop/bin/Release/${{ matrix.config.platform }}/publish/osu.Game.Native.Desktop.${{ matrix.config.ext }}
+          path: Sources/osu.Native/bin/Release/${{ matrix.config.platform }}/publish/osu.Native.${{ matrix.config.ext }}
 
       - name: Update bindings
-        run: cp Sources/osu.Game.Native.Desktop/bin/Release/${{ matrix.config.platform }}/publish/osu.Game.Native.Desktop.${{ matrix.config.ext }} Bindings/CSharp/osu.Game.Native.Desktop.Bindings/runtimes/${{ matrix.config.platform }}/native/osu.Game.Native.Desktop.${{ matrix.config.ext }}
+        run: cp Sources/osu.Native/bin/Release/${{ matrix.config.platform }}/publish/osu.Native.${{ matrix.config.ext }} Bindings/CSharp/osu.Native.Bindings/runtimes/${{ matrix.config.platform }}/native/osu.Native.${{ matrix.config.ext }}
 
       - name: Create pull request
         uses: peter-evans/create-pull-request@v6

@@ -1,4 +1,4 @@
-﻿using osu.Game.Native.Desktop.Bindings;
+﻿using osu.Native.Bindings;
 
 string beatmap = args[0];
 int ruleset = int.Parse(args[1]);

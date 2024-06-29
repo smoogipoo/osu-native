@@ -1,6 +1,6 @@
-# osu-native-diffcalc
+# osu-native
 
-Produces C-style bindings for osu! difficulty calculation.
+Native tools for osu!
 
 Work in progress. Help/usage scenarios welcomed :)
 
@@ -10,19 +10,19 @@ Work in progress. Help/usage scenarios welcomed :)
 
 ```sh
 # Build
-dotnet publish -r <RID> ./Sources/osu.Game.Native.Desktop/osu.Game.Native.Desktop.csproj
+dotnet publish -r <RID> ./Sources/osu.Native/osu.Native.csproj
 
-# Output found in ./Sources/osu.Game.Native.Desktop/bin/Release/<RID>/publish/
+# Output found in ./Sources/osu.Native.Desktop/bin/Release/<RID>/publish/
 ```
 
 ### WebAssembly:
 
 ```sh
 # Build
-dotnet publish ./Sources/osu.Game.Native.WebAssembly/osu.Game.Native.WebAssembly.csproj
+dotnet publish ./Sources/osu.Native.WebAssembly/osu.Native.WebAssembly.csproj
 
 # Run
-cd ./Sources/osu.Game.Native.WebAssembly/bin/Release/net8.0/publish/wwwroot
+cd ./Sources/osu.Native.WebAssembly/bin/Release/net8.0/publish/wwwroot
 python3 -m http.server
 
 # Navigate to http://localhost:8000
