@@ -1,0 +1,27 @@
+{
+  "name": "smoogipoo.osu-native",
+  "version": "1.0.4",
+  "main": "index.js",
+  "type": "module",
+  "exports": {
+    "import": "./index.js",
+    "require": "./index.cjs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smoogipoo/osu-native.git"
+  },
+  "author": "smoogipoo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/smoogipoo/osu-native/issues"
+  },
+  "homepage": "https://github.com/smoogipoo/osu-native#readme",
+  "description": "",
+  "devDependencies": {
+    "rollup": "^4.18.0"
+  }
+}
