@@ -8,6 +8,7 @@
     "require": "./index.cjs"
   },
   "scripts": {
+    "build": "npx rollup -i index.js -o cjs --format cjs --external ./_framework/dotnet.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

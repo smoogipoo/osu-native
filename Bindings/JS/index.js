@@ -1,4 +1,4 @@
-import { dotnet } from './dotnet.js';
+import { dotnet } from './_framework/dotnet.js';
 
 export default class Lazer {
     static async create() {
