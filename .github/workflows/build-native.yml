@@ -49,7 +49,6 @@ jobs:
     name: Pack (C#)
     needs: build-desktop
     runs-on: ubuntu-latest
-    if: startsWith(github.ref, 'refs/tags/')
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -96,7 +95,17 @@ jobs:
           path: Bindings/CSharp/osu.Native.Bindings/runtimes/osx-arm64/native/osu.Native.dylib
 
       - name: Pack
-        run: dotnet pack -c Release Bindings/CSharp/osu.Native.Bindings/osu.Native.Bindings.csproj
+        run: dotnet pack -c Release Bindings/CSharp/osu.Native.Bindings/osu.Native.Bindings.csproj /p:Version=${{ github.ref_name }}
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: osu.Native.Bindings.nupkg
+          path: Bindings/CSharp/osu.Native.Bindings/bin/Release/*.nupkg
+
+      - name: Publish
+        if: startsWith(github.ref, 'refs/tags/')
+        run: dotnet nuget push Bindings/CSharp/osu.Native.Bindings/bin/Release/*.nupkg --api-key ${{ secrets.NUGET_TOKEN }} --source https://api.nuget.org/v3/index.json
   
   build-wasm:
     name: Build (WASM)
@@ -127,7 +136,6 @@ jobs:
   pack-wasm:
     name: Pack (WASM)
     needs: build-wasm
-    if: startsWith(github.ref, 'refs/tags/')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -151,6 +159,7 @@ jobs:
         run: npm version ${{ github.ref_name }}
 
       - name: Publish
+        if: startsWith(github.ref, 'refs/tags/')
         working-directory: ./Bindings/JS
         run: npm publish
         env:
