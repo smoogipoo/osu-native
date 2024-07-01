@@ -1,6 +1,6 @@
 {
   "name": "smoogipoo.osu-native",
-  "version": "1.0.4",
+  "version": "1.0.0",
   "main": "index.js",
   "type": "module",
   "exports": {
