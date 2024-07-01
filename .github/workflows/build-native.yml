@@ -161,6 +161,8 @@ jobs:
 
       - name: Publish
         working-directory: ./Bindings/JS
-        run: npm publish
+        run: |
+          npm config set //registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN
+          npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
