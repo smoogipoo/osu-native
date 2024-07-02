@@ -1,8 +1,18 @@
+
+<div align="center">
+
+[![npmjs](https://badge.fury.io/js/smoogipoo.osu-native.svg)](https://badge.fury.io/js/smoogipoo.osu-native)
+[![NuGet version](https://badge.fury.io/nu/smoogipoo.osu.Native.Bindings.svg)](https://badge.fury.io/nu/smoogipoo.osu.Native.Bindings)
+
+</div>
+
 # osu-native
 
 Native tools for osu!
 
-Work in progress. Help/usage scenarios welcomed :)
+> [!CAUTION]
+>
+> Work in progress. API is unstable. Usage scenarios/requests welcome!
 
 ## Building / Running
 
