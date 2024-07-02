@@ -1,7 +1,6 @@
-import { dotnet } from './_framework/dotnet.js';
-
 export default class Lazer {
     static async create() {
+        const { dotnet } = await import('./_framework/dotnet.js');
         const instance = new Lazer();
 
         const { getAssemblyExports, getConfig } = await dotnet
