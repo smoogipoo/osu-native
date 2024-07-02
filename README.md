@@ -14,6 +14,10 @@ Native tools for osu!
 >
 > Work in progress. API is unstable. Usage scenarios/requests welcome!
 
+## Usage
+
+Check out the [samples](https://github.com/smoogipoo/osu-native/tree/master/Samples)!
+
 ## Building / Running
 
 ### Desktop:
