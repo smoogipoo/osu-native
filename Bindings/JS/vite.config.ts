@@ -1,6 +1,5 @@
 import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
-import { cjsInterop } from "vite-plugin-cjs-interop";
 
 
 export default defineConfig({
