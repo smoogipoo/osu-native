@@ -19,9 +19,6 @@ export default defineConfig({
     },
     rollupOptions: {
       external: ['./_framework/dotnet.js'],
-      output: {
-        interop: 'compat',
-      }
     }
   }
 })
