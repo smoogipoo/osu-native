@@ -10,6 +10,8 @@ namespace osu.Native
     public static class Logger
     {
         private static TextWriter writeStream;
+
+        // ReSharper disable once NotAccessedField.Local
         private static LogDelegate logHandler;
 
         public static unsafe void SetOutputStream(TextWriter stream)
@@ -20,12 +22,12 @@ namespace osu.Native
 
         private static unsafe void onLog(char* message)
         {
-            writeStream.WriteLine(Marshal.PtrToStringAuto((IntPtr)message));
+            writeStream.WriteLine(Marshal.PtrToStringUni((IntPtr)message));
         }
 
         [DllImport(Lazer.LIB_NAME, EntryPoint = "SetLogger")]
         private static extern int setLogger(IntPtr logger);
     }
 
-    public unsafe delegate void LogDelegate([MarshalAs(UnmanagedType.LPStr)] char* message);
+    public unsafe delegate void LogDelegate(char* message);
 }

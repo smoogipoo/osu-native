@@ -24,7 +24,7 @@ namespace osu.Native
         /// Sets the logger.
         /// </summary>
         /// <param name="handler">A callback to handle the message.</param>
-        [UnmanagedCallersOnly(CallConvs = [typeof(CallConvCdecl)])]
+        [UnmanagedCallersOnly(EntryPoint = "SetLogger", CallConvs = [typeof(CallConvCdecl)])]
         public static void SetLogger(delegate* unmanaged<char*, void> handler)
         {
             log = handler;

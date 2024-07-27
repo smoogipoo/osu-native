@@ -27,7 +27,7 @@ namespace osu.Native
         {
             try
             {
-                string beatmapText = Marshal.PtrToStringUTF8((IntPtr)content) ?? string.Empty;
+                string beatmapText = Marshal.PtrToStringUni((IntPtr)content) ?? string.Empty;
                 WorkingBeatmap beatmap = new StringBackedWorkingBeatmap(beatmapText);
 
                 return new NativeWorkingBeatmap(beatmap);

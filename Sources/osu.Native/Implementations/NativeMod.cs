@@ -47,8 +47,8 @@ namespace osu.Native
         /// Retrieves a mod's settings.
         /// </summary>
         /// <param name="mod">The mod.</param>
-        /// <param name="names">The setting names. These must be freed by the callsite.</param>
-        /// <param name="values">The setting values. These must be freed by the callsite.</param>
+        /// <param name="names">The setting names. Must be freed by the caller.</param>
+        /// <param name="values">The setting values. Must be freed by the caller.</param>
         /// <returns>The number of settings.</returns>
         [UnmanagedCallersOnly(EntryPoint = "Mod_GetSettings", CallConvs = [typeof(CallConvCdecl)])]
         public static int GetSettings(NativeMod mod, [Out] char*** names, [Out] char*** values)
@@ -72,6 +72,30 @@ namespace osu.Native
                 *names = Allocator.Pack(osuNames);
                 *values = Allocator.Pack(osuValues);
                 return index;
+            }
+            catch (Exception ex)
+            {
+                Logger.Log(ex.ToString());
+                return default;
+            }
+        }
+
+        /// <summary>
+        /// Retrieves the value of a mod's setting.
+        /// </summary>
+        /// <param name="mod">The mod.</param>
+        /// <param name="name">The name of the setting to retrieve the value of.</param>
+        /// <returns>The value. Must be freed by the caller.</returns>
+        [UnmanagedCallersOnly(EntryPoint = "Mod_GetSetting", CallConvs = [typeof(CallConvCdecl)])]
+        public static char* GetSetting(NativeMod mod, [In] char* name)
+        {
+            try
+            {
+                Mod osuMod = mod.Get();
+                string osuName = Marshal.PtrToStringUni((IntPtr)name) ?? string.Empty;
+                string osuValue = osuMod.SettingsMap[osuName].ToString(null, CultureInfo.InvariantCulture);
+
+                return (char*)Marshal.StringToHGlobalUni(osuValue);
             }
             catch (Exception ex)
             {
