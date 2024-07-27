@@ -149,7 +149,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: _framework
-          path: Bindings/JS/_framework
+          path: Bindings/JS/public/_framework
 
       - name: Run build
         working-directory: ./Bindings/JS
