@@ -154,7 +154,7 @@ jobs:
       - name: Run build
         working-directory: ./Bindings/JS
         run: |
-          npm install
+          npm ci
           npm run build
 
       - name: Set version
