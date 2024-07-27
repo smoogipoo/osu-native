@@ -1,17 +1,31 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+        <TargetFramework>netstandard2.0</TargetFramework>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)' == 'Release'">
         <TargetFrameworks>net4.0;netstandard2.0</TargetFrameworks>
+    </PropertyGroup>
+
+    <PropertyGroup>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
 
     <PropertyGroup>
+        <RootNamespace>osu.Native</RootNamespace>
         <PackageId>smoogipoo.osu.Native.Bindings</PackageId>
-        <Version>1.0.2</Version>
     </PropertyGroup>
 
     <ItemGroup>
-        <Compile Include="$(MSBuildThisFileDirectory)../../../Sources/osu.Native/ErrorCode.cs"/>
+        <Compile Include="$(MSBuildThisFileDirectory)../../../External/osu/osu.Game/Rulesets/Mods/ModType.cs"/>
+        <Compile Include="$(MSBuildThisFileDirectory)../../../External/osu/osu.Game/Beatmaps/Legacy/LegacyMods.cs"/>
+
+        <Compile Include="$(MSBuildThisFileDirectory)../../../Sources/osu.Native/NativeDifficultyAttributes.cs"/>
+        <Compile Include="$(MSBuildThisFileDirectory)../../../Sources/osu.Native/NativeDifficultyCalculator.cs"/>
+        <Compile Include="$(MSBuildThisFileDirectory)../../../Sources/osu.Native/NativeMod.cs"/>
+        <Compile Include="$(MSBuildThisFileDirectory)../../../Sources/osu.Native/NativeRuleset.cs"/>
+        <Compile Include="$(MSBuildThisFileDirectory)../../../Sources/osu.Native/NativeWorkingBeatmap.cs"/>
     </ItemGroup>
 
     <ItemGroup>
