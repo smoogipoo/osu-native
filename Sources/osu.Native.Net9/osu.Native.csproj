@@ -1,0 +1,9 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+    </PropertyGroup>
+    <Import Project="$(MSBuildThisFileDirectory)../osu.Native/osu.Native.csproj" />
+    <ItemGroup>
+        <Compile Include="$(MSBuildThisFileDirectory)../osu.Native/**/*.cs" />
+    </ItemGroup>
+</Project>

@@ -1,18 +1,20 @@
 <Project>
-    <!-- win-x86 RID is only supported by .NET 9, currently in preview -->
-    <PropertyGroup Condition="'$(RuntimeIdentifier)' == 'win-x86'">
-        <TargetFramework>net9.0</TargetFramework>
-    </PropertyGroup>
-
-    <!-- All other RIDs are supported by .NET 8 -->
-    <PropertyGroup Condition="'$(RuntimeIdentifier)' != 'win-x86'">
-        <TargetFramework>net8.0</TargetFramework>
-    </PropertyGroup>
-
     <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
         <Nullable>enable</Nullable>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <NoWarn>8765;3021</NoWarn>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <RepositoryRootDirectory>$(MSBuildThisFileDirectory)</RepositoryRootDirectory>
+        <ArtifactsDir>$(RepositoryRootDirectory)artifacts\$(MSBuildProjectName)</ArtifactsDir>
+        <OutputPath>$([System.IO.Path]::GetFullPath('$(ArtifactsDir)'))\bin</OutputPath>
+        <BaseIntermediateOutputPath>$([System.IO.Path]::GetFullPath('$(ArtifactsDir)'))\obj</BaseIntermediateOutputPath>
+        <PackageOutputPath>$(ArtifactsDir)\packages</PackageOutputPath>
+
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
     </PropertyGroup>
 
     <Import Project="osuTK.Build.props"/>

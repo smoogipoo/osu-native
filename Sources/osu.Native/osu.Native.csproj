@@ -2,7 +2,5 @@
     <PropertyGroup>
         <PublishAot>true</PublishAot>
         <PublishTrimmed>true</PublishTrimmed>
-        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-        <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
     </PropertyGroup>
 </Project>
