@@ -21,16 +21,6 @@ namespace osu.Native
         }
 
         /// <summary>
-        /// Sets the logger.
-        /// </summary>
-        /// <param name="handler">A callback to handle the message.</param>
-        [UnmanagedCallersOnly(EntryPoint = "SetLogger", CallConvs = [typeof(CallConvCdecl)])]
-        public static void SetLogger(delegate* unmanaged<char*, void> handler)
-        {
-            log = handler;
-        }
-
-        /// <summary>
         /// Logs a message.
         /// </summary>
         /// <param name="message">The message.</param>
@@ -42,6 +32,16 @@ namespace osu.Native
             IntPtr msgPtr = Marshal.StringToHGlobalUni(message);
             log((char*)msgPtr);
             Marshal.FreeHGlobal(msgPtr);
+        }
+
+        /// <summary>
+        /// Sets the logger.
+        /// </summary>
+        /// <param name="handler">A callback to handle the message.</param>
+        [UnmanagedCallersOnly(EntryPoint = "SetLogger", CallConvs = [typeof(CallConvCdecl)])]
+        public static void SetLogger(delegate* unmanaged<char*, void> handler)
+        {
+            log = handler;
         }
     }
 }

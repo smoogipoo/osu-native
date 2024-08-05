@@ -116,7 +116,7 @@ namespace osu.Native
         /// By default, malloc() is used.
         /// </summary>
         /// <param name="handler">A callback to handle the allocation.</param>
-        [UnmanagedCallersOnly(CallConvs = [typeof(CallConvCdecl)])]
+        [UnmanagedCallersOnly(EntryPoint = "SetAllocator", CallConvs = [typeof(CallConvCdecl)])]
         public static void SetAllocator(delegate* unmanaged<uint, void*> handler)
         {
             malloc = handler;
