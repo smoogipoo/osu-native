@@ -31,19 +31,17 @@ jobs:
       - name: Install .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: |
-            9.0.x
-            8.0.x
-          dotnet-quality: 'daily'
+          dotnet-version: 9.0.x
+          dotnet-quality: 'preview'
 
       - name: Build
-        run: dotnet publish -c Release -r ${{ matrix.config.platform }} --self-contained Sources/osu.Native/osu.Native.csproj
+        run: dotnet publish -r ${{ matrix.config.platform }} Sources/osu.Native/osu.Native.csproj
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.config.platform }}
-          path: Sources/osu.Native/bin/Release/${{ matrix.config.platform }}/publish/osu.Native.${{ matrix.config.ext }}
+          path: artifacts/publish/osu.Native/release_${{ matrix.config.platform }}/osu.Native.${{ matrix.config.ext }}
 
   pack-cs:
     name: Pack (C#)
@@ -57,7 +55,8 @@ jobs:
       - name: Install .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '8.0.x'
+          dotnet-version: '9.0.x'
+          dotnet-quality: 'preview'
 
       - name: Add win-x86
         uses: actions/download-artifact@v4
@@ -96,16 +95,16 @@ jobs:
           path: Bindings/CSharp/osu.Native.Bindings/runtimes/osx-arm64/native/osu.Native.dylib
 
       - name: Pack
-        run: dotnet pack -c Release Bindings/CSharp/osu.Native.Bindings/osu.Native.Bindings.csproj /p:Version=${{ github.ref_name }}
+        run: dotnet pack Bindings/CSharp/osu.Native.Bindings/osu.Native.Bindings.csproj /p:Version=${{ github.ref_name }}
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: osu.Native.Bindings.nupkg
-          path: Bindings/CSharp/osu.Native.Bindings/bin/Release/*.nupkg
+          path: artifacts/package/release/*.nupkg
 
       - name: Publish
-        run: dotnet nuget push Bindings/CSharp/osu.Native.Bindings/bin/Release/*.nupkg --api-key ${{ secrets.NUGET_TOKEN }} --source https://api.nuget.org/v3/index.json
+        run: dotnet nuget push artifacts/package/release/*.nupkg --api-key ${{ secrets.NUGET_TOKEN }} --source https://api.nuget.org/v3/index.json
   
   build-wasm:
     name: Build (WASM)
@@ -119,19 +118,20 @@ jobs:
       - name: Install .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '8.0.x'
+          dotnet-version: '9.0.x'
+          dotnet-quality: 'preview'
       
       - name: Install WASM experimental tools
         run: dotnet workload install wasm-experimental
       
       - name: Build
-        run: dotnet publish -c Release Sources/osu.Native.WebAssembly/osu.Native.WebAssembly.csproj
+        run: dotnet publish Sources/osu.Native.WebAssembly/osu.Native.WebAssembly.csproj
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: _framework
-          path: Sources/osu.Native.WebAssembly/bin/Release/net8.0/publish/wwwroot/_framework
+          path: artifacts/publish/osu.Native.WebAssembly/release/wwwroot/_framework
 
   pack-wasm:
     name: Pack (WASM)
