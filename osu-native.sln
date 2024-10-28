@@ -1,12 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "osu.Native", "osu.Native\osu.Native.csproj", "{6467E7A9-DE2C-4960-873E-AB058262FDAE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "osu.Native", "Sources\osu.Native\osu.Native.csproj", "{6467E7A9-DE2C-4960-873E-AB058262FDAE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "osu.Native.WebAssembly", "osu.Native.WebAssembly\osu.Native.WebAssembly.csproj", "{0D538C83-4744-4018-9D34-51F4C9E481C5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "osu.Native.WebAssembly", "Sources\osu.Native.WebAssembly\osu.Native.WebAssembly.csproj", "{0D538C83-4744-4018-9D34-51F4C9E481C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "osu.Native.Bindings", "..\Bindings\CSharp\osu.Native.Bindings\osu.Native.Bindings.csproj", "{8164F8FF-2F8D-40BC-8B2B-96F9E43DA4BB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "osu.Native.Bindings", "Bindings\CSharp\osu.Native.Bindings\osu.Native.Bindings.csproj", "{8164F8FF-2F8D-40BC-8B2B-96F9E43DA4BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples.CSharp", "..\Samples\CSharp\Samples.CSharp.csproj", "{BC91A015-0BA8-4A21-933B-AD2B2B29668F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples.CSharp", "Samples\CSharp\Samples.CSharp.csproj", "{BC91A015-0BA8-4A21-933B-AD2B2B29668F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

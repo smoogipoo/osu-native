@@ -1,4 +1,3 @@
-
 <div align="center">
 
 [![npmjs](https://badge.fury.io/js/smoogipoo.osu-native.svg)](https://badge.fury.io/js/smoogipoo.osu-native)
@@ -23,21 +22,21 @@ Check out the [samples](https://github.com/smoogipoo/osu-native/tree/master/Samp
 ### Desktop:
 
 ```sh
-# Build
-dotnet publish -r <RID> ./Sources/osu.Native/osu.Native.csproj
+# Build the native project -> ./artifacts/publish/osu.Native/release/
+dotnet publish --ucr ./Sources/osu.Native/osu.Native.csproj
 
-# Output found in ./Sources/osu.Native.Desktop/bin/Release/<RID>/publish/
+# Run the sample project
+dotnet run --project Samples/CSharp/Samples.CSharp.csproj -- <beatmap_file> <ruleset_id> <mods_int>
 ```
 
 ### WebAssembly:
 
 ```sh
-# Build
+# Build the native project -> ./artifacts/publish/osu.Native.WebAssembly/release/ 
 dotnet publish ./Sources/osu.Native.WebAssembly/osu.Native.WebAssembly.csproj
 
-# Run
-cd ./Sources/osu.Native.WebAssembly/bin/Release/net8.0/publish/wwwroot
-python3 -m http.server
+# Run the sample project
+python3 -m http.server --directory ./artifacts/publish/osu.Native.WebAssembly/release/wwwroot
 
 # Navigate to http://localhost:8000
 ```

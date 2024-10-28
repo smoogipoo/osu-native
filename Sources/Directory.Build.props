@@ -1,17 +1,8 @@
 <Project>
-    <!-- win-x86 RID is only supported by .NET 9, currently in preview -->
-    <PropertyGroup Condition="'$(RuntimeIdentifier)' == 'win-x86'">
-        <TargetFramework>net9.0</TargetFramework>
-    </PropertyGroup>
-
-    <!-- All other RIDs are supported by .NET 8 -->
-    <PropertyGroup Condition="'$(RuntimeIdentifier)' != 'win-x86'">
-        <TargetFramework>net8.0</TargetFramework>
-    </PropertyGroup>
+    <!-- https://learn.microsoft.com/en-us/visualstudio/msbuild/customize-by-directory?view=vs-2022#use-case-multi-level-merging -->
+    <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../'))" />
 
     <PropertyGroup>
-        <Nullable>enable</Nullable>
-        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <NoWarn>8765;3021</NoWarn>
     </PropertyGroup>
 
