@@ -19,7 +19,7 @@ namespace osu.Native.Bindings
 
         private void onLazerLog(char* message)
         {
-            Log?.Invoke(Marshal.PtrToStringAuto((IntPtr)message));
+            Log?.Invoke(Marshal.PtrToStringUni((IntPtr)message));
         }
 
         public IDifficultyCalculator CreateDifficultyCalculator() => new DifficultyCalculator();
