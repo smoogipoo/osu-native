@@ -8,9 +8,9 @@ namespace osu.Native.Bindings
 {
     public unsafe class Lazer
     {
-        public event Action<string> Log;
+        public event Action<string>? Log;
 
-        private static Native.LogDelegate logHandler;
+        private static Native.LogDelegate? logHandler;
 
         public Lazer()
         {
