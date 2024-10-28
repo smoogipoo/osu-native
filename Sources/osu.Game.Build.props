@@ -5,6 +5,8 @@
     <ItemGroup>
         <Compile Include="$(GameDir)/Utils/Optional.cs;
                           $(GameDir)/Utils/IDeepCloneable.cs;
+                          $(GameDir)/Utils/BindableValueAccessor.cs;
+                          $(GameDir)/Utils/SpecialFunctions.cs;
                           $(GameDir)/Audio/HitSampleInfo.cs;
                           $(GameDir)/Audio/ISampleInfo.cs;
                           $(GameDir)/Audio/SampleInfo.cs;
@@ -106,6 +108,7 @@
                           $(GameDir)/Rulesets/Mods/ModMuted.cs;
                           $(GameDir)/Rulesets/Mods/ModNoScope.cs;
                           $(GameDir)/Rulesets/Mods/ModAccuracyChallenge.cs;
+                          $(GameDir)/Rulesets/Mods/ModBarrelRoll.cs;
                           $(GameDir)/Beatmaps/Formats/LegacyStoryboardDecoder.cs;
                           $(GameDir)/Beatmaps/Formats/JsonBeatmapDecoder.cs;
                           $(GameDir)/Storyboards/Drawables/**/*.cs;"
