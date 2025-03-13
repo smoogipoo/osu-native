@@ -6,7 +6,7 @@
         <Compile Include="$(GameDir)/Utils/Optional.cs;
                           $(GameDir)/Utils/IDeepCloneable.cs;
                           $(GameDir)/Utils/BindableValueAccessor.cs;
-                          $(GameDir)/Utils/SpecialFunctions.cs;
+						  $(GameDir)/Utils/SupportedExtensions.cs;
                           $(GameDir)/Audio/HitSampleInfo.cs;
                           $(GameDir)/Audio/ISampleInfo.cs;
                           $(GameDir)/Audio/SampleInfo.cs;
@@ -83,6 +83,8 @@
                           $(GameDir)/Online/API/Requests/Responses/APIBeatmap.cs;
                           $(GameDir)/Online/API/Requests/Responses/APIBeatmapSet.cs;
                           $(GameDir)/Online/Rooms/RoomCategory.cs;
+						  $(GameDir)/Online/Rooms/RoomStatus.cs;
+						  $(GameDir)/Online/EndpointConfiguration.cs;
                           $(GameDir)/Scoring/RankingTier.cs;
                           $(GameDir)/Scoring/IScoreInfo.cs;
                           $(GameDir)/Scoring/ScoreInfoExtensions.cs;

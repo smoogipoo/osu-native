@@ -5,4 +5,15 @@
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
         <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
     </PropertyGroup>
+    <ItemGroup>
+      <Compile Include="..\Shared\Stubs\osu.Game.Rulesets.Osu\Mods\OsuModBloom.cs">
+        <Link>Stubs\osu.Game.Rulesets.Osu\Mods\OsuModBloom.cs</Link>
+      </Compile>
+      <Compile Include="..\Shared\Stubs\osu.Game.Rulesets.Taiko\Mods\TaikoModRelax.cs">
+        <Link>Stubs\osu.Game.Rulesets.Taiko\Mods\TaikoModRelax.cs</Link>
+      </Compile>
+      <Compile Include="..\Shared\Stubs\osu.Game\Online\Rooms\MatchType.cs">
+        <Link>Stubs\osu.Game\Online\Rooms\MatchType.cs</Link>
+      </Compile>
+    </ItemGroup>
 </Project>

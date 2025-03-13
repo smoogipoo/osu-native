@@ -10,5 +10,6 @@ namespace osu.Game.Storyboards
     public class Storyboard
     {
         public BeatmapInfo BeatmapInfo = default!;
+        public IBeatmap Beatmap = default!;
     }
 }
