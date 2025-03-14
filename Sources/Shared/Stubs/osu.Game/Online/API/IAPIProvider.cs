@@ -8,5 +8,6 @@ namespace osu.Game.Online.API
     public interface IAPIProvider
     {
         string WebsiteRootUrl { get; }
+        EndpointConfiguration Endpoints { get;  }
     }
 }

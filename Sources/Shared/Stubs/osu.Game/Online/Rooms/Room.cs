@@ -1,15 +1,16 @@
 // Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the MIT Licence.
 // See the LICENCE file in the repository root for full licence text.
 
-using osu.Game.Beatmaps;
+using System;
 
 // ReSharper disable once CheckNamespace
 
-namespace osu.Game.Storyboards
+namespace osu.Game.Online.Rooms
 {
-    public class Storyboard
+    public partial class Room
     {
-        public BeatmapInfo BeatmapInfo = default!;
-        public IBeatmap Beatmap = default!;
+        public bool HasEnded => default!;
+        public RoomStatus Status => default!;
+        public bool HasPassword => default!;
     }
 }
